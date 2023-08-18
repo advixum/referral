@@ -1,6 +1,8 @@
 # Referral API
+Задачи: https://github.com/advixum/referral/blob/main/TASKS.md <br>
 Приложение доступно по адресу: https://advixum.freemyip.com:3333/ <br>
-Ссылка на документацию ReDoc: https://advixum.freemyip.com:3333/api/redoc/
+Документация ReDoc: https://advixum.freemyip.com:3333/api/redoc/ <br>
+Коллекция Postman: https://github.com/advixum/referral/blob/main/Referral.postman_collection.json
 
 **Описание функционала API**
 
@@ -20,3 +22,5 @@
 
 - HTTP-метод: POST
 - Функционал: Позволяет аутентифицированному пользователю зарегистрировать реферальный код другого пользователя. Отправленный код проверяется по нескольким параметрам. Если код совпадает с реферальным кодом другого пользователя и не является собственным, он успешно регистрируется. Если реферальный код отсутствует в запросе или совпадает с кодом самого пользователя, возвращается ответ 400 BAD REQUEST. Если код не совпадает с уже существующими, возвращается ответ 404 NOT FOUND.
+
+Используемые технологии: Python, Django, Django REST Framework, Token Auth, PostgreSQL, ReDoc, Postman, JavaScript, React, Axios, HTML, CSS.
