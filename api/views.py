@@ -212,6 +212,11 @@ class DataView(APIView):
                 {"message": "User not found."}, 
                 status=status.HTTP_404_NOT_FOUND
             )
+        if user_instance.invited != "":
+            return Response(
+                {"message": "You cannot modify a registered referral code."}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
         try:
             ref_check = User.objects.get(ref=ref_code)
         except User.DoesNotExist:
