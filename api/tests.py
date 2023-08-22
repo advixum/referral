@@ -167,6 +167,30 @@ class DataViewTests(APITestCase):
         self.assertEqual(response.data["ref"], self.user1.ref)
         self.assertEqual(response.data["invited"], "")
 
+    def test_post_user2_ref_modify(self):
+        """
+        The modification of the registered referral was unsuccessful.
+        """
+        # Check user2 POST request data
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {self.token2.key}")
+        response = self.client.post("/api/data/", data={"ref_code": self.user3.ref})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data["message"], "You cannot modify a registered referral code.")
+        # Check user3 GET request data
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {self.token3.key}")
+        response = self.client.get("/api/data/")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["users"], [])
+        self.assertEqual(response.data["ref"], self.user3.ref)
+        self.assertEqual(response.data["invited"], "")
+        # Check user1 GET request data
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {self.token1.key}")
+        response = self.client.get("/api/data/")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["users"], [self.user2.username])
+        self.assertEqual(response.data["ref"], self.user1.ref)
+        self.assertEqual(response.data["invited"], "")
+
     def test_post_user3_ref_user3(self):
         """
         Registration of your own referral was unsuccessful.
