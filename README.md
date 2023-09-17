@@ -1,4 +1,4 @@
-# Referral API
+# Тестовое задание: Реализация простой реферальной системы
 Задачи: https://github.com/advixum/referral/blob/main/TASKS.md <br>
 Приложение доступно по адресу: https://advixum.freemyip.com:3333/ <br>
 Документация ReDoc: https://advixum.freemyip.com:3333/api/redoc/ <br>
